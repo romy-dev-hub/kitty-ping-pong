@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch LÖVE",
+        "type": "lua",
+        "request": "launch",
+        "program": "${workspaceFolder}/main.lua",
+        "runtimeExecutable": "love",
+        "args": ["${workspaceFolder}"]
+      }
+    ]
+  
+}
