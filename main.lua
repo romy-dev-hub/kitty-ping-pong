@@ -1,3 +1,7 @@
+local start = require("start")
+local game = require("game")
+local pause = require("pause")
+
 function love.load()
     -- Set the window title and dimensions
     love.window.setTitle("Kitty Ping Pong 🐱")
@@ -37,6 +41,12 @@ function love.load()
     -- Fonts
     scoreFont = love.graphics.newFont(20)
     gameOverFont = love.graphics.newFont(30)
+
+    -- Initialize game states
+    currentState = "menu"
+    start.load()
+    game.load()
+    pause.load()
 end
 
 function resetGame()
@@ -134,6 +144,10 @@ function love.update(dt)
             resetBall()
         end
     end
+
+    if currentState == "game" then
+        game.update(dt)
+    end
 end
 
 function love.draw()
@@ -163,6 +177,14 @@ function love.draw()
         love.graphics.setColor(0.86, 0.20, 0.18)  -- Red
         local text = "Game Over! Final Score: "..score.."\nPress R to restart"
         love.graphics.printf(text, 0, window_height/2 - 50, window_width, "center")
+    end
+
+    if currentState == "menu" then
+        start.draw()
+    elseif currentState == "game" then
+        game.draw()
+    elseif currentState == "pause" then
+        pause.draw()
     end
 end
 
@@ -198,5 +220,21 @@ function love.keypressed(key)
         score = 0
         lives = 3
         resetGame()
+    end
+
+    if key == "escape" then
+        if currentState == "game" then
+            currentState = "pause"
+        elseif currentState == "pause" then
+            currentState = "game"
+        end
+    end
+end
+
+function love.mousepressed(x, y)
+    if currentState == "menu" then
+        currentState = start.mousepressed(x, y)
+    elseif currentState == "pause" then
+        currentState = pause.mousepressed(x, y)
     end
 end
