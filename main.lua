@@ -155,14 +155,14 @@ function love.draw()
     love.graphics.setBackgroundColor(0.96, 0.89, 0.87)  -- Light pink
 
     -- Draw paddles (cat paws)
-    love.graphics.setColor(0.98, 0.52, 0.65)  -- Pink
-    love.graphics.rectangle("fill", hand1.x, hand1.y, hand1.width, hand1.height, 5)
-    love.graphics.rectangle("fill", hand2.x, hand2.y, hand2.width, hand2.height, 5)
+    love.graphics.setColor(1, 1, 1)  -- Reset color to white for images
+    love.graphics.draw(paddleImg, hand1.x, hand1.y)
+    love.graphics.draw(paddleImg, hand2.x, hand2.y)
 
     -- Draw ball (yarn)
     if not gameOver then
-        love.graphics.setColor(0.98, 0.88, 0.19)  -- Yellow
-        love.graphics.circle("fill", ball.x, ball.y, ball.radius)
+       love.graphics.setColor(1, 1, 1)  -- Reset color
+       love.graphics.draw(ballImg, ball.x - ball.radius, ball.y - ball.radius)  -- Adjust for center
     end
 
     -- Draw UI

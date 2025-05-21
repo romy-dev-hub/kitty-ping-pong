@@ -2,7 +2,7 @@ local game = {}
 
 function game.load()
     -- Load game assets
-    game.background = love.graphics.newImage("assets/game_bg.png")
+    game.background = love.graphics.newImage("assets/background.png")
     game.paddleImg = love.graphics.newImage("assets/paddle.png")
     game.ballImg = love.graphics.newImage("assets/ball.png")
     
