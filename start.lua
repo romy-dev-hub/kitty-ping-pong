@@ -2,8 +2,6 @@ local start = {}
 
 function start.load()
     -- Menu elements
-    start.logo = love.graphics.newImage("assets/logo.png")
-    start.buttonImg = love.graphics.newImage("assets/button.png")
     start.font = love.graphics.newFont(32)
     
     -- Button positions
@@ -16,15 +14,12 @@ function start.draw()
     -- Draw background
     love.graphics.setBackgroundColor(0.2, 0.4, 0.6)
     
-    -- Draw logo
-    love.graphics.draw(start.logo, 200, 100)
-    
-    -- Draw buttons
-    for _, btn in pairs(start.buttons) do
-        love.graphics.draw(start.buttonImg, btn.x, btn.y)
-        love.graphics.setFont(start.font)
-        love.graphics.printf("PLAY", btn.x, btn.y + 15, btn.w, "center")
-    end
+    -- Draw button
+    love.graphics.setColor(0.98, 0.52, 0.65)  -- Pink
+    love.graphics.rectangle("fill", start.buttons.play.x, start.buttons.play.y, start.buttons.play.w, start.buttons.play.h, 5)
+    love.graphics.setColor(1, 1, 1)  -- White text
+    love.graphics.setFont(start.font)
+    love.graphics.printf("PLAY", start.buttons.play.x, start.buttons.play.y + 15, start.buttons.play.w, "center")
 end
 
 function start.mousepressed(x, y)

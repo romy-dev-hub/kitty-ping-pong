@@ -14,10 +14,14 @@ function pause.draw()
     love.graphics.rectangle("fill", 0, 0, 800, 600)
     love.graphics.setColor(1, 1, 1)
     
-    -- Draw buttons
+    -- Draw text and buttons
     love.graphics.printf("PAUSED", 0, 200, 800, "center")
-    love.graphics.printf("Resume", 300, 315, 200, "center")
-    love.graphics.printf("Main Menu", 300, 415, 200, "center")
+    love.graphics.setColor(0.98, 0.52, 0.65)  -- Pink
+    love.graphics.rectangle("fill", pause.buttons.resume.x, pause.buttons.resume.y, pause.buttons.resume.w, pause.buttons.resume.h, 5)
+    love.graphics.rectangle("fill", pause.buttons.menu.x, pause.buttons.menu.y, pause.buttons.menu.w, pause.buttons.menu.h, 5)
+    love.graphics.setColor(1, 1, 1)  -- White text
+    love.graphics.printf("Resume", pause.buttons.resume.x, pause.buttons.resume.y + 15, pause.buttons.resume.w, "center")
+    love.graphics.printf("Main Menu", pause.buttons.menu.x, pause.buttons.menu.y + 15, pause.buttons.menu.w, "center")
 end
 
 function pause.mousepressed(x, y)

@@ -1,11 +1,6 @@
 local game = {}
 
 function game.load()
-    -- Load game assets
-    game.background = love.graphics.newImage("assets/background.png")
-    game.paddleImg = love.graphics.newImage("assets/paddle.png")
-    game.ballImg = love.graphics.newImage("assets/ball.png")
-    
     -- Initialize game objects
     game.paddles = {
         left = {x = 50, y = 250},
@@ -20,18 +15,22 @@ function game.update(dt)
 end
 
 function game.draw()
-    love.graphics.draw(game.background, 0, 0)
-    
+    -- Draw background
+    love.graphics.setBackgroundColor(0.96, 0.89, 0.87)  -- Light pink
+
     -- Draw paddles
-    love.graphics.draw(game.paddleImg, game.paddles.left.x, game.paddles.left.y)
-    love.graphics.draw(game.paddleImg, game.paddles.right.x, game.paddles.right.y)
-    
+    love.graphics.setColor(0.98, 0.52, 0.65)  -- Pink
+    love.graphics.rectangle("fill", game.paddles.left.x, game.paddles.left.y, 20, 100, 5)
+    love.graphics.rectangle("fill", game.paddles.right.x, game.paddles.right.y, 20, 100, 5)
+
     -- Draw ball
-    love.graphics.draw(game.ballImg, game.ball.x, game.ball.y)
-    
+    love.graphics.setColor(0.98, 0.88, 0.19)  -- Yellow
+    love.graphics.circle("fill", game.ball.x, game.ball.y, 15)
+
     -- Draw score
-    love.graphics.print("Score: "..game.score.left, 50, 20)
-    love.graphics.print("Score: "..game.score.right, 650, 20)
+    love.graphics.setColor(0.29, 0.29, 0.29)  -- Dark gray
+    love.graphics.print("Score: " .. game.score.left, 50, 20)
+    love.graphics.print("Score: " .. game.score.right, 650, 20)
 end
 
 return game
